@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Specialist Portfolio</title>
+    <style>
+        :root {
+            --dark: #121212;
+            --dark-surface: #1e1e1e;
+            --dark-card: #252525;
+            --purple-primary: #9c27b0;
+            --purple-light: #bb86fc;
+            --purple-dark: #7b1fa2;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        header {
+            background-color: var(--dark-surface);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--purple-light);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--purple-light);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+        }
+        
+        .hero {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 0;
+            background: radial-gradient(circle at top right, rgba(156, 39, 176, 0.2), transparent 60%);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .hero-image img {
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--purple-primary);
+            border-radius: 20px;
+            top: 20px;
+            left: 20px;
+            opacity: 0.3;
+            filter: blur(20px);
+            z-index: 0;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .highlight {
+            color: var(--purple-light);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background-color: var(--purple-dark);
+            bottom: 4px;
+            left: 0;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--purple-primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+        
+        .btn:hover {
+            background-color: var(--purple-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(123, 31, 162, 0.4);
+        }
+        
+        .btn-outlined {
+            background-color: transparent;
+            color: var(--purple-light);
+            border: 1px solid var(--purple-light);
+            margin-left: 1rem;
+        }
+        
+        .btn-outlined:hover {
+            background-color: rgba(156, 39, 176, 0.1);
+            box-shadow: 0 5px 15px rgba(123, 31, 162, 0.2);
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background-color: var(--purple-primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .chatbot-container {
+            background-color: var(--dark-card);
+            border-radius: 1rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin: 4rem 0;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(156, 39, 176, 0.2);
+        }
+        
+        .chatbot-header {
+            background-color: var(--dark-surface);
+            color: var(--text-primary);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(156, 39, 176, 0.2);
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--purple-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .chatbot-body {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background-color: var(--dark-card);
+            background-image: radial-gradient(rgba(156, 39, 176, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .user-message {
+            margin-left: auto;
+            background-color: var(--purple-primary);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem 1rem 0 1rem;
+        }
+        
+        .bot-message {
+            background-color: var(--dark-surface);
+            padding: 0.75rem 1rem;
+            border-radius: 1rem 1rem 1rem 0;
+            border-left: 3px solid var(--purple-light);
+        }
+        
+        .chatbot-footer {
+            padding: 1rem;
+            border-top: 1px solid rgba(156, 39, 176, 0.2);
+            display: flex;
+            gap: 1rem;
+            background-color: var(--dark-surface);
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            border-radius: 0.5rem;
+            outline: none;
+            background-color: var(--dark);
+            color: var(--text-primary);
+            transition: border-color 0.2s;
+        }
+        
+        .chat-input:focus {
+            border-color: var(--purple-light);
+            box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.2);
+        }
+        
+        .send-btn {
+            background-color: var(--purple-primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .send-btn:hover {
+            background-color: var(--purple-dark);
+            transform: translateY(-2px);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background-color: var(--dark-card);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(156, 39, 176, 0.1);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--purple-light);
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .skill-tag {
+            background-color: rgba(156, 39, 176, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            border: 1px solid rgba(156, 39, 176, 0.2);
+            transition: all 0.2s;
+        }
+        
+        .skill-tag:hover {
+            background-color: rgba(156, 39, 176, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--dark-card);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(156, 39, 176, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-color: var(--dark-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--purple-light);
+        }
+        
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .project-tag {
+            background-color: rgba(156, 39, 176, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .contact {
+            background-color: var(--dark-card);
+            border-radius: 1rem;
+            padding: 3rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(156, 39, 176, 0.1);
+        }
+        
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-group.full {
+            grid-column: span 2;
+        }
+        
+        .form-control {
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            border-radius: 0.5rem;
+            background-color: var(--dark);
+            color: var(--text-primary);
+            font-size: 1rem;
+            resize: vertical;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--purple-light);
+            box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.2);
+        }
+        
+        .form-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background-color: var(--dark-surface);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid rgba(156, 39, 176, 0.2);
+        }
+        
+        .social-link:hover {
+            background-color: var(--purple-primary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(123, 31, 162, 0.4);
+        }
+        
+        footer {
+            background-color: var(--dark-surface);
+            color: var(--text-secondary);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 5rem;
+            border-top: 1px solid rgba(156, 39, 176, 0.1);
+        }
+        
+        .suggested-prompts {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .prompt-tag {
+            background-color: rgba(156, 39, 176, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid rgba(156, 39, 176, 0.2);
+        }
+        
+        .prompt-tag:hover {
+            background-color: rgba(156, 39, 176, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .typing-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+        
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background-color: var(--purple-light);
+            border-radius: 50%;
+            display: inline-block;
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        
+        .typing-indicator span:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+            40% { transform: scale(1.0); opacity: 1; }
+        }
+        
+        .image-preview {
+            margin: 1rem 0;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .remove-image-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .remove-image-btn:hover {
+            opacity: 1;
+        }
+        
+        .chat-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .control-btn {
+            background-color: var(--dark);
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            border-radius: 0.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+        
+        .control-btn:hover {
+            background-color: rgba(156, 39, 176, 0.1);
+            border-color: var(--purple-light);
+        }
+        
+        .model-selector {
+            background-color: var(--dark);
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            border-radius: 0.5rem;
+            padding: 0 0.75rem;
+            color: var(--text-primary);
+            height: 40px;
+        }
+        
+        .camera-container {
+            background-color: var(--dark-surface);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            position: relative;
+            border: 1px solid rgba(156, 39, 176, 0.2);
+        }
+        
+        .camera-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        
+        .capture-btn {
+            background-color: var(--purple-primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .capture-btn:hover {
+            background-color: var(--purple-dark);
+        }
+        
+        .close-camera-btn {
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--text-secondary);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .close-camera-btn:hover {
+            border-color: white;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: var(--dark-surface);
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">CV.AI</a>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <button class="hamburger">☰</button>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Computer Vision <span class="highlight">Expert</span></h1>
+                        <p class="subtitle">Specializing in deep learning, object detection, and image segmentation. Chat with my AI assistant to learn about my research and projects.</p>
+                        <a href="#chatbot" class="btn">Try the Chatbot</a>
+                        <a href="#projects" class="btn btn-outlined">View Projects</a>
+                    </div>
+                    <div class="hero-image">
+                        <img src="/api/placeholder/400/400" alt="Profile Image">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="chatbot" class="section">
+            <div class="container">
+                <h2 class="section-title">Chat with my AI Assistant</h2>
+                <div class="chatbot-container">
+                    <div class="chatbot-header">
+                        <div class="avatar">AI</div>
+                        <div>
+                            <h3>Computer Vision Assistant</h3>
+                            <p>Ask about my CV research, projects, or techniques</p>
+                        </div>
+                    </div>
+                    <div class="chatbot-body" id="chat-messages">
+                        <div class="message bot-message">
+                            👋 Hello! I'm an AI assistant for a Computer Vision specialist. Ask me anything about their CV expertise, research papers, or projects!
+                        </div>
+                        <div class="suggested-prompts">
+                            <div class="prompt-tag">What computer vision models do you work with?</div>
+                            <div class="prompt-tag">Explain your research focus</div>
+                            <div class="prompt-tag">Tell me about your technical pipeline</div>
+                            <div class="prompt-tag">What industries have you worked in?</div>
+                        </div>
+                    </div>
+                    <div class="chatbot-footer">
+                        <input type="text" id="user-input" class="chat-input" placeholder="Ask something about computer vision...">
+                        <button id="send-btn" class="send-btn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="category-title">AI & Computer Vision</h3>
+                        <div class="skill-list">
+                            <div class="skill-tag">PyTorch</div>
+                            <div class="skill-tag">TensorFlow</div>
+                            <div class="skill-tag">OpenCV</div>
+                            <div class="skill-tag">CNNs</div>
+                            <div class="skill-tag">Object Detection</div>
+                            <div class="skill-tag">Image Segmentation</div>
+                            <div class="skill-tag">Transfer Learning</div>
+                            <div class="skill-tag">YOLO</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title">Programming & Tools</h3>
+                        <div class="skill-list">
+                            <div class="skill-tag">Python</div>
+                            <div class="skill-tag">C++</div>
+                            <div class="skill-tag">CUDA</div>
+                            <div class="skill-tag">Docker</div>
+                            <div class="skill-tag">Git</div>
+                            <div class="skill-tag">Linux</div>
+                            <div class="skill-tag">Kubernetes</div>
+                            <div class="skill-tag">AWS/GCP</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title">Research Areas</h3>
+                        <div class="skill-list">
+                            <div class="skill-tag">Attention Mechanisms</div>
+                            <div class="skill-tag">Low-light Imaging</div>
+                            <div class="skill-tag">Multimodal Learning</div>
+                            <div class="skill-tag">Edge AI</div>
+                            <div class="skill-tag">3D Vision</div>
+                            <div class="skill-tag">Video Analysis</div>
+                            <div class="skill-tag">Autonomous Systems</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="category-title">Applications</h3>
+                        <div class="skill-list">
+                            <div class="skill-tag">Medical Imaging</div>
+                            <div class="skill-tag">Autonomous Vehicles</div>
+                            <div class="skill-tag">Biometrics</div>
+                            <div class="skill-tag">Industrial Inspection</div>
+                            <div class="skill-tag">Satellite Imagery</div>
+                            <div class="skill-tag">AR/VR</div>
+                            <div class="skill-tag">Robotics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="/api/placeholder/400/200" alt="Real-time Object Detection">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Real-time Object Detection System</h3>
+                            <p>Developed a high-performance object detection system that processes video streams in real-time with 97% accuracy, deployed in industrial safety applications.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">PyTorch</span>
+                                <span class="project-tag">YOLO</span>
+                                <span class="project-tag">CUDA</span>
+                            </div>
+                            <a href="#" class="btn">View Details</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="/api/placeholder/400/200" alt="Medical Image Analysis">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Medical Image Analysis AI</h3>
+                            <p>Created a deep learning system for automated analysis of medical imaging data, achieving diagnostic accuracy comparable to expert radiologists while reducing analysis time by 78%.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">TensorFlow</span>
+                                <span class="project-tag">U-Net
